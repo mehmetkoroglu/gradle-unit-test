@@ -3,6 +3,8 @@
  */
 package hw3;
 
+import java.util.ArrayList;
+
 public class App {
     public String getGreeting() {
         return "Hello World!";
@@ -10,6 +12,13 @@ public class App {
 
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
+    }
+
+    public boolean calc(ArrayList<Integer> array, int a, int b, int c) {
+        if (array.isEmpty()) return true;
+        if(array.contains(a)) return true;
+        if (array.contains(b)) return true;
+        return true;
     }
 
     public boolean isTrue() {
