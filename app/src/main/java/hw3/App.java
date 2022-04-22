@@ -15,10 +15,10 @@ public class App {
     }
 
     public boolean calc(ArrayList<Integer> array, int a, int b, int c) {
-        if (array.isEmpty()) return true;
+        //if (array.isEmpty()) return true;
         if(array.contains(a)) return true;
         if (array.contains(b)) return true;
-        return true;
+        return false;
     }
 
     public boolean isTrue() {

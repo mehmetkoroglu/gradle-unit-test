@@ -6,13 +6,24 @@ package hw3;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+
 class AppTest {
-    @Test void appHasAGreeting() {
+    @Test
+    void appHasAGreeting() {
         App classUnderTest = new App();
         assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
     }
 
-    @Test void firstTest() {
+    @Test
+    void firstTest() {
         assertTrue(new App().isTrue());
+    }
+
+    @Test
+    void isInArray() {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        arrayList.add(25);
+        assertTrue(new App().calc(arrayList, 25, 2, 25));
     }
 }
