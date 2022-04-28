@@ -17,13 +17,15 @@ class AppTest {
 
     @Test
     void firstTest() {
-        assertTrue(new App().isTrue());
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        arrayList.add(12);
+        assertTrue(new App().calc(arrayList, 12, 12, 12));
     }
 
     @Test
-    void isInArray() {
+    void isEmptyArray() {
         ArrayList<Integer> arrayList = new ArrayList<>();
-        arrayList.add(25);
-        assertTrue(new App().calc(arrayList, 25, 2, 25));
+        assertTrue(new App().calc(arrayList, 1, 1, 1));
     }
+
 }

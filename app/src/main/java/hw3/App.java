@@ -14,14 +14,13 @@ public class App {
         System.out.println(new App().getGreeting());
     }
 
-    public boolean calc(ArrayList<Integer> array, int a, int b, int c) {
-        //if (array.isEmpty()) return true;
-        if(array.contains(a)) return true;
-        if (array.contains(b)) return true;
+    public boolean calc(ArrayList<Integer> arrayList, int a, int b, int c) {
+        if (arrayList.isEmpty())
+            return true;
+        if (arrayList.contains(a))
+            return true;
+        if (arrayList.contains(b))
+            return true;
         return false;
-    }
-
-    public boolean isTrue() {
-        return true;
-    }
+    }    
 }
