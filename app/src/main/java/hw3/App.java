@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 import spark.ModelAndView;
 import static spark.Spark.get;
 import static spark.Spark.post;
+import static spark.Spark.port;
 import spark.template.mustache.MustacheTemplateEngine;
 
 public class App {
@@ -24,9 +25,12 @@ public class App {
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
 
-
         Logger logger = LogManager.getLogger(App.class);
         logger.error("naber");
+
+        int port = Integer.parseInt(System.getenv("PORT"));
+        port(port);
+        logger.error("Current port number:" + port);
 
         get("/", (req, res) -> "Hello World");
 
@@ -64,7 +68,8 @@ public class App {
     public static boolean isContains(ArrayList<Integer> arrayList, int search) {
 
         for (Integer integer : arrayList) {
-            if (integer == search) return true;
+            if (integer == search)
+                return true;
         }
         return false;
     }
