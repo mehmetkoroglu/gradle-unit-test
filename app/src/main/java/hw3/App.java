@@ -4,6 +4,17 @@
 package hw3;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+import spark.ModelAndView;
+import spark.Request;
+import spark.Response;
+import spark.Route;
+import static spark.Spark.get;
+import static spark.Spark.post;
+import spark.template.mustache.MustacheTemplateEngine;
 
 public class App {
     public String getGreeting() {
@@ -12,9 +23,39 @@ public class App {
 
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
+
+        get("/compute", (req, res) -> {
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("result", "not computed yet!");
+            return new ModelAndView(map, "compute.mustache");
+
+        }, new MustacheTemplateEngine());
+
+        post("/compute", (req, res) -> {
+            String input1 = req.queryParams("input1");
+
+            Scanner scanner1 = new Scanner(input1);
+            scanner1.useDelimiter("[;\r\n]+");
+            ArrayList<Integer> arrayList = new ArrayList<>();
+            while (scanner1.hasNext()) {
+                int value = Integer.parseInt(scanner1.next().replaceAll("\\s", ""));
+                arrayList.add(value);
+            }
+            scanner1.close();
+            System.out.println(arrayList);
+
+            String input2 = req.queryParams("input2").replaceAll("\\s", "");
+            int value2 = Integer.parseInt(input2);
+            boolean result = App.calc(arrayList, 12, value2, 12);
+
+            Map<String, Boolean> map = new HashMap<String, Boolean>();
+            map.put("result", result);
+
+            return new ModelAndView(map, "compute.mustache");
+        }, new MustacheTemplateEngine());
     }
 
-    public boolean calc(ArrayList<Integer> arrayList, int a, int b, int c) {
+    public static boolean calc(ArrayList<Integer> arrayList, int a, int b, int c) {
         if (arrayList.isEmpty())
             return true;
         if (arrayList.contains(a))
@@ -22,5 +63,15 @@ public class App {
         if (arrayList.contains(b))
             return true;
         return false;
-    }    
+    }
+
+    Route r = new Route() {
+
+        @Override
+        public Object handle(Request request, Response response) throws Exception {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+    };
 }

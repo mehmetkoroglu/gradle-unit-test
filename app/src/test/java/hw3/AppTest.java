@@ -18,14 +18,14 @@ class AppTest {
     @Test
     void firstTest() {
         ArrayList<Integer> arrayList = new ArrayList<>();
-        arrayList.add(12);
-        assertTrue(new App().calc(arrayList, 12, 12, 12));
+        arrayList.add(12);        
+        assertTrue(App.calc(arrayList, 12, 12, 12));
     }
 
     @Test
     void isEmptyArray() {
         ArrayList<Integer> arrayList = new ArrayList<>();
-        assertTrue(new App().calc(arrayList, 1, 1, 1));
+        assertTrue(App.calc(arrayList, 1, 1, 1));
     }
 
 }
