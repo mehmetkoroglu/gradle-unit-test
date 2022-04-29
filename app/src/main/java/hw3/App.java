@@ -8,10 +8,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import spark.ModelAndView;
-import spark.Request;
-import spark.Response;
-import spark.Route;
 import static spark.Spark.get;
 import static spark.Spark.post;
 import spark.template.mustache.MustacheTemplateEngine;
@@ -23,6 +23,12 @@ public class App {
 
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
+
+
+        Logger logger = LogManager.getLogger(App.class);
+        logger.error("naber");
+
+        get("/", (req, res) -> "Hello World");
 
         get("/compute", (req, res) -> {
             Map<String, String> map = new HashMap<String, String>();
@@ -46,13 +52,21 @@ public class App {
 
             String input2 = req.queryParams("input2").replaceAll("\\s", "");
             int value2 = Integer.parseInt(input2);
-            boolean result = App.calc(arrayList, 12, value2, 12);
+            boolean result = App.isContains(arrayList, value2);
 
             Map<String, Boolean> map = new HashMap<String, Boolean>();
             map.put("result", result);
 
             return new ModelAndView(map, "compute.mustache");
         }, new MustacheTemplateEngine());
+    }
+
+    public static boolean isContains(ArrayList<Integer> arrayList, int search) {
+
+        for (Integer integer : arrayList) {
+            if (integer == search) return true;
+        }
+        return false;
     }
 
     public static boolean calc(ArrayList<Integer> arrayList, int a, int b, int c) {
@@ -64,14 +78,4 @@ public class App {
             return true;
         return false;
     }
-
-    Route r = new Route() {
-
-        @Override
-        public Object handle(Request request, Response response) throws Exception {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-    };
 }
