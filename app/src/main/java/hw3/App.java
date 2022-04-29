@@ -38,7 +38,6 @@ public class App {
             Map<String, String> map = new HashMap<String, String>();
             map.put("result", "not computed yet!");
             return new ModelAndView(map, "compute.mustache");
-
         }, new MustacheTemplateEngine());
 
         post("/compute", (req, res) -> {
@@ -52,11 +51,17 @@ public class App {
                 arrayList.add(value);
             }
             scanner1.close();
-            System.out.println(arrayList);
 
             String input2 = req.queryParams("input2").replaceAll("\\s", "");
             int value2 = Integer.parseInt(input2);
-            boolean result = App.isContains(arrayList, value2);
+
+            String input3 = req.queryParams("input3").replaceAll("\\s", "");
+            int value3 = Integer.parseInt(input3);
+
+            String input4 = req.queryParams("input4").replaceAll("\\s", "");
+            int value4 = Integer.parseInt(input4);
+
+            boolean result = App.calc(arrayList, value2, value3, value4);
 
             Map<String, Boolean> map = new HashMap<String, Boolean>();
             map.put("result", result);
@@ -65,22 +70,10 @@ public class App {
         }, new MustacheTemplateEngine());
     }
 
-    public static boolean isContains(ArrayList<Integer> arrayList, int search) {
-
-        for (Integer integer : arrayList) {
-            if (integer == search)
-                return true;
-        }
-        return false;
-    }
-
     public static boolean calc(ArrayList<Integer> arrayList, int a, int b, int c) {
-        if (arrayList.isEmpty())
-            return true;
-        if (arrayList.contains(a))
-            return true;
-        if (arrayList.contains(b))
-            return true;
+        if (arrayList.isEmpty()) return true;
+        if (arrayList.contains(a)) return true;
+              
         return false;
     }
 }
