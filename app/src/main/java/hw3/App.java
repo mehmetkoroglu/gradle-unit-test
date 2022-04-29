@@ -58,10 +58,9 @@ public class App {
             String input3 = req.queryParams("input3").replaceAll("\\s", "");
             int value3 = Integer.parseInt(input3);
 
-            String input4 = req.queryParams("input4").replaceAll("\\s", "");
-            int value4 = Integer.parseInt(input4);
+            String input4 = req.queryParams("input4");
 
-            boolean result = App.calc(arrayList, value2, value3, value4);
+            boolean result = App.calc(arrayList, value2, value3, input4);
 
             Map<String, Boolean> map = new HashMap<String, Boolean>();
             map.put("result", result);
@@ -70,9 +69,21 @@ public class App {
         }, new MustacheTemplateEngine());
     }
 
-    public static boolean calc(ArrayList<Integer> arrayList, int a, int b, int c) {
+    public static boolean calc(ArrayList<Integer> arrayList, int a, int b, String yontem) {
         if (arrayList.isEmpty()) return true;
-        if (arrayList.contains(a)) return true;
+
+        if (yontem.equals("+")) {
+            return arrayList.contains(a + b);
+        }
+        if (yontem.equals("-")) {
+            return arrayList.contains(a - b);
+        }
+        if (yontem.equals("*")) {
+            return arrayList.contains(a * b);
+        }
+        if (yontem.equals("/")) {
+            return arrayList.contains(a / b);
+        }
               
         return false;
     }
