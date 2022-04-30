@@ -1,1 +1,1 @@
-Yazılım Mühendisliği - Ödev 3
+echo Yazılım Mühendisliği - Ödev 3
