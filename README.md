@@ -1,1 +1,1 @@
-echo >> Yazılım Mühendisliği - Ödev 3
+Yazılım Mühendisliği - Ödev 3
