@@ -43,14 +43,14 @@ public class App {
         post("/compute", (req, res) -> {
             String input1 = req.queryParams("input1");
 
-            Scanner scanner1 = new Scanner(input1);
-            scanner1.useDelimiter("[;\r\n]+");
+            Scanner scanner = new Scanner(input1);
+            scanner.useDelimiter("[;\r\n]+");
             ArrayList<Integer> arrayList = new ArrayList<>();
-            while (scanner1.hasNext()) {
-                int value = Integer.parseInt(scanner1.next().replaceAll("\\s", ""));
+            while (scanner.hasNext()) {
+                int value = Integer.parseInt(scanner.next().replaceAll("\\s", ""));
                 arrayList.add(value);
             }
-            scanner1.close();
+            scanner.close();
 
             String input2 = req.queryParams("input2").replaceAll("\\s", "");
             int value2 = Integer.parseInt(input2);
@@ -69,20 +69,20 @@ public class App {
         }, new MustacheTemplateEngine());
     }
 
-    public static boolean calc(ArrayList<Integer> arrayList, int a, int b, String yontem) {
+    public static boolean calc(ArrayList<Integer> arrayList, int count1, int count2, String calcType) {
         if (arrayList.isEmpty()) return true;
 
-        if (yontem.equals("+")) {
-            return arrayList.contains(a + b);
+        if (calcType.equals("+")) {
+            return arrayList.contains(count1 + count2);
         }
-        if (yontem.equals("-")) {
-            return arrayList.contains(a - b);
+        if (calcType.equals("-")) {
+            return arrayList.contains(count1 - count2);
         }
-        if (yontem.equals("*")) {
-            return arrayList.contains(a * b);
+        if (calcType.equals("*")) {
+            return arrayList.contains(count1 * count2);
         }
-        if (yontem.equals("/")) {
-            return arrayList.contains(a / b);
+        if (calcType.equals("/")) {
+            return arrayList.contains(count1 / count2);
         }
               
         return false;
