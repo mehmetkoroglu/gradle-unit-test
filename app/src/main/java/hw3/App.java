@@ -26,9 +26,10 @@ public class App {
         System.out.println(new App().getGreeting());
 
         Logger logger = LogManager.getLogger(App.class);
-        logger.error("naber");
+        logger.error("Error!");
 
-        int port = Integer.parseInt(System.getenv("PORT"));
+        String systemPort = System.getenv("PORT");
+        int port = Integer.parseInt(systemPort != null ? systemPort : "4567");
         port(port);
         logger.error("Current port number:" + port);
 
@@ -70,7 +71,8 @@ public class App {
     }
 
     public static boolean calc(ArrayList<Integer> arrayList, int count1, int count2, String calcType) {
-        if (arrayList.isEmpty()) return true;
+        if (arrayList.isEmpty())
+            return true;
 
         if (calcType.equals("+")) {
             return arrayList.contains(count1 + count2);
@@ -84,7 +86,7 @@ public class App {
         if (calcType.equals("/")) {
             return arrayList.contains(count1 / count2);
         }
-              
+
         return false;
     }
 }
