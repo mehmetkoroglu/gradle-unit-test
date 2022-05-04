@@ -29,11 +29,11 @@ public class App {
         logger.error("Error!");
 
         String systemPort = System.getenv("PORT");
-        int port = Integer.parseInt(systemPort != null ? systemPort : "4567");
+        int port = systemPort != null ? Integer.parseInt(systemPort) : 4567;
         port(port);
         logger.error("Current port number: " + port);
 
-        get("/", (req, res) -> "Hello World");
+        get("/", (req, res) -> "<h1>Hello World</h1>");
 
         get("/compute", (req, res) -> {
             Map<String, String> map = new HashMap<String, String>();
