@@ -31,7 +31,7 @@ public class App {
         String systemPort = System.getenv("PORT");
         int port = Integer.parseInt(systemPort != null ? systemPort : "4567");
         port(port);
-        logger.error("Current port number:" + port);
+        logger.error("Current port number: " + port);
 
         get("/", (req, res) -> "Hello World");
 
