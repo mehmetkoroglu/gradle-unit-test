@@ -62,7 +62,7 @@ public class App {
 
             String input4 = req.queryParams("input4");
 
-            boolean result = App.calc(arrayList, value2, value3, input4);
+            boolean result = App.isCalcInArray(arrayList, value2, value3, input4);
 
             Map<String, Boolean> map = new HashMap<String, Boolean>();
             map.put("result", result);
@@ -73,7 +73,7 @@ public class App {
 
     // gelen parametrelere göre dört işlemden birini yapıp gelen dizide olup
     // olmadığını kontrol eden fonksiyon
-    public static boolean calc(ArrayList<Integer> arrayList, int count1, int count2, String calcType) {
+    public static boolean isCalcInArray(ArrayList<Integer> arrayList, int count1, int count2, String calcType) {
 
         if (arrayList.isEmpty()) { // gelen dizi boş ise true döndür
             return true;
