@@ -17,37 +17,37 @@ class AppTest {
     }
 
     @Test
-    void multiplyResultInArray() {
+    void multiplyResultInArray() { // çarpım sonucu dizi içinde
         ArrayList<Integer> arrayList = new ArrayList<>(Arrays.asList(34, 56, 78, -43, 687, 89, 12, 546));
         assertTrue(App.calc(arrayList, 12, 1, "*"));
     }
 
     @Test
-    void emptyArray() {
+    void emptyArray() { // boş dizi
         ArrayList<Integer> arrayList = new ArrayList<>();
         assertTrue(App.calc(arrayList, 1, 1, ""));
     }
 
     @Test
-    void sumInArray() {
+    void sumInArray() { // toplam sonucu dizi içinde
         ArrayList<Integer> arrayList = new ArrayList<>(Arrays.asList(12, 23, 45, 56, 67, 78543, 567));
         assertTrue(App.calc(arrayList, 8, 4, "+"));
     }
 
     @Test
-    void positiveResult() {
+    void positiveResult() { // işlem sonucu pozitif
         ArrayList<Integer> arrayList = new ArrayList<>(Arrays.asList(12, 23, 45, 54, 78, 34, 98));
         assertTrue(App.calc(arrayList, -9, -5, "*"));
     }
 
     @Test
-    void negativeResult() {
+    void negativeResult() { // işlem sonucu negatif
         ArrayList<Integer> arrayList = new ArrayList<>(Arrays.asList(12, 23, 45, 56, -15, 67, 78543, 567));
         assertTrue(App.calc(arrayList, 10, 25, "-"));
     }
 
     @Test
-    void negativeResultNotFound() {
+    void negativeResultNotFound() { // negatif işlem sonucu dizide değil
         ArrayList<Integer> arrayList = new ArrayList<>(Arrays.asList(12, 23, 36, 45, 56, 67, 567));
         assertFalse(App.calc(arrayList, 36, -1, "*"));
     }
