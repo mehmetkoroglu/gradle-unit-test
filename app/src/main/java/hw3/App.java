@@ -39,6 +39,7 @@ public class App {
         get("/compute", (req, res) -> { // hesaplama sayfası yolu dinamik içeriği
             Map<String, String> map = new HashMap<String, String>();
             map.put("result", "not computed yet!");
+            map.put("calc_result", "not computed yet!");
             return new ModelAndView(map, "compute.mustache");
         }, new MustacheTemplateEngine());
 
@@ -63,9 +64,11 @@ public class App {
             String input4 = req.queryParams("input4");
 
             boolean result = App.isCalcInArray(arrayList, value2, value3, input4);
+            int calc_result = App.calcResult(value2, value3, input4);
 
-            Map<String, Boolean> map = new HashMap<String, Boolean>();
+            Map<String, Object> map = new HashMap<String, Object>();
             map.put("result", result);
+            map.put("calc_result", calc_result);
 
             return new ModelAndView(map, "compute.mustache");
         }, new MustacheTemplateEngine());
@@ -91,6 +94,20 @@ public class App {
             return arrayList.contains(count1 / count2); // ve sonuç dizide var ise true döndürür.
         }
 
-        return false; // hiç bir şart sağlanmazsa varsayışan olarak false döndürür.
+        return false; // hiç bir şart sağlanmazsa varsayılan olarak false döndürür.
+    }
+
+    public static int calcResult(int count1, int count2, String calcType) {
+        if (calcType.equals("+")) { // gelen işlem türüne göre işlem yapılır ve döndürülür.
+            return (count1 + count2); //
+        } else if (calcType.equals("-")) {
+            return (count1 - count2);
+        } else if (calcType.equals("*")) {
+            return (count1 * count2);
+        } else if (calcType.equals("/")) {
+            return (count1 / count2);
+        } else {
+            return 0; // hiç bir şart sağlanmazsa varsayılan olarak 0 döndürür.
+        }
     }
 }
